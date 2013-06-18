@@ -1,0 +1,11 @@
+#!/bin/bash
+# This is a simple script and will be executed on your CI system if 
+# available.  Otherwise it will execute while your application is stopped
+# before the build step.  This script gets executed directly, so it
+# could be python, php, ruby, etc.
+
+#kill Celery daemon
+for PID in `ps ax|grep celeryd|grep -v grep|sed 's/[ ]*\([0-9]*\).*/\1/'`
+do 
+    kill -9 "$PID"
+done

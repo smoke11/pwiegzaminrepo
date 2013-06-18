@@ -1,0 +1,15 @@
+
+<body>
+{% if jobid %}
+<h>Job id: {{job_id}}</h>
+<br /><br />
+<h>Job: {% autoescape off %}{{ job }}{% endautoescape %}</h>
+<br /><br />
+<a href="/">Powrot</a>
+{% else %}
+  <form action="" method="post">
+    {% csrf_token %}
+    Podaj proste obliczenie:<br/>np. 2+2 lub 4*6 <br/> Tylko 2 cyfry, bez nawiasow.<br/> <br/>><input type="text" name="calculation" maxlength="200" value="{{ text }}"/>
+    <input type="submit" value="Send" />
+{% endif %}
+</body>

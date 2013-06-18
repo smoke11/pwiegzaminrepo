@@ -1,0 +1,4 @@
+{% load i18n %}
+{% trans "Aktywacja konta na " %} {{ site.name }}:
+
+http://{{ site.domain }}{% url "registration_activate" activation_key %}

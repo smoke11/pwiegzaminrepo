@@ -1,0 +1,23 @@
+{% include "base.html" %}
+<body>
+<b>Wszystkie wpisy: </b> </br></br>
+{% for doc in docs %}
+    <i>Caly wpis:</i> </br>{{doc}} <br/><br/>
+    <i>Parsowany:</i>  </br>
+    {% if chat %}
+        {% if doc.host %}
+        ip: <b>{{doc.host}}</b> <br/>
+        {% endif %}
+        {% if doc.delivery %}
+        wzgledny adres w aplikacji: <b>{{doc.delivery}}</b> <br/>
+        {% endif %}
+
+        {% if doc.active %}
+            Czy jest aktywny:
+            <b>Aktywny</b> </b> <br/>
+        {% endif %}
+    {% endif %}
+    <i>--------------</i>
+    <br/>
+{% endfor %}
+</body>

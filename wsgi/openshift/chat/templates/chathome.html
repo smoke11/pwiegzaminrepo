@@ -1,0 +1,34 @@
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+</script>
+    </head>
+
+<body>
+  {% if user.is_authenticated %}
+  {{ user.username }}, <a href="/chat/logout">Logout</a><br/>
+  <form action="add_message" method="post">
+    {% csrf_token %}
+    Message: <input type="text" name="message" maxlength="200" value="{{ text }}"/>
+    <input type="submit" value="Send" />
+  </form>
+  {% else %}
+  <a href="/chat/accounts/register">Register</a> or <a href="/chat/login">login</a>.
+  <br/>
+
+  {% endif %}
+    <b>Dane odswiezaja sie co 5 sekund.</b><br/>
+  <br/>
+  <div id="data">
+
+  </div>
+<script>
+  function update() {
+      $('#data').load("/chat/data")
+  }
+
+  setInterval(update, 5000);
+  update();
+</script>
+</body>

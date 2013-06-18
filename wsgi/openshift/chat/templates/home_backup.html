@@ -1,0 +1,34 @@
+
+<script type="text/javascript" src="{{ STATIC_URL }} /static/jquery-2.0.2.js">
+    $(function() {
+  function update() {
+      $.getJSON("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22%5EFTSE%22)%0A%09%09&format=json&env=http%3A%2F%2Fdatatables.org%2Falltables.env&callback=?",
+      function(json){
+        $('#finance').text(json.query.results.quote.Change);
+    });
+  }
+  setInterval(update, 5000);
+  update();
+});
+
+
+</script>
+        {% include "base.html" %}
+<body>
+  {% if user.is_authenticated %}
+  {{ user.username }}, <a href="/chat/logout">Logout</a><br/>
+  <form action="add_message" method="post">
+    {% csrf_token %}
+    Message: <input type="text" name="message" maxlength="200" value="{{ text }}"/>
+    <input type="submit" value="Send" />
+  </form>
+  {% else %}
+  <a href="/chat/accounts/register">Register</a> or <a href="/chat/login">login</a>.
+  <br/>
+  {% endif %}
+  <br/>
+
+  {% for line in lines %}
+  {{line}}<br/>
+  {% endfor %}
+</body>

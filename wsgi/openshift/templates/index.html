@@ -1,0 +1,7 @@
+{% include "base.html" %}
+<body>
+  {% for app,link in apps.items %}
+  <a href="{{link}}">{{app}}</a>
+  <br/>
+  {% endfor %}
+</body>

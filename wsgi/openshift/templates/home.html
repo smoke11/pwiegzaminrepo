@@ -1,0 +1,19 @@
+{% include "base.html" %}
+<body>
+  {% if user.is_authenticated %}
+  {{ user.username }}, <a href="/logout">Logout</a><br/>
+  <form action="add_message" method="post">
+    {% csrf_token %}
+    Message: <input type="text" name="message" maxlength="200" value="{{ text }}"/>
+    <input type="submit" value="Send" />
+  </form>
+  {% else %}
+  <a href="/accounts/register">Register</a> or <a href="/login">login</a>.
+  <br/>
+  {% endif %}
+  <br/>
+
+  {% for line in lines %}
+  {{line}}<br/>
+  {% endfor %}
+</body>

@@ -1,0 +1,25 @@
+{% include "base.html" %}
+<body>
+<b>Wszystkie wpisy: </b> </br></br>
+{% for doc in docs %}
+    <i>Caly wpis:</i> </br>{{doc}} <br/><br/>
+    <i>Parsowany:</i> </br>
+    {% if calc %}
+        {% if doc.host %}
+        ip: <b>{{doc.host}}</b> <br/>
+        {% endif %}
+        {% if doc.operator %}
+        operator: <b>{{doc.operator}}</b> <br/>
+        {% endif %}
+        {% if doc.calculation %}
+        operator: <b>{{doc.calculation}}</b> <br/>
+        {% endif %}
+        {% if doc.active %}
+            Czy jest aktywny:
+            <b>Aktywny</b> <br/>
+        {% endif %}
+    {% endif %}
+    <i>--------------</i>
+    <br/>
+{% endfor %}
+</body>
